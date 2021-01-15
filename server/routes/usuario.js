@@ -10,12 +10,12 @@ const Usuario = require('../models/usuario')
 const {verificaToken, verificaAdminRole} = require('../middlewares/autenticacion')
 
 app.get('/usuario', verificaToken, (req, res) => {
+    // VerificaToken ==>
     // return res.json({
     //     usuario: req.usuario,
     //     nombre: req.usuario.nombre,
     //     email: req.usuario.email
     // })
-
     let desde = req.query.desde || 0
     desde = Number(desde)
 
@@ -87,7 +87,6 @@ app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
             usuario: usuarioDB
         })
     })
-
 })
 
 app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
@@ -105,12 +104,12 @@ app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
             })
 
         if(!usuarioBorrado)
-        return res.status(400).json({
-            ok: false,
-            err: {
-                message: 'Usuario no encontrado.'
-            }
-        })
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: 'Usuario no encontrado.'
+                }
+            })
         
         res.json({
             ok:true,
