@@ -24,7 +24,7 @@ app.get('/usuario', verificaToken, (req, res) => {
 
     let tipo = req.query.tipo || true
 
-    Usuario.find({estado: tipo}, 'nombre email role estado google')
+    Usuario.find({estado: tipo}, 'nombre email role estado google img')
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) =>{
