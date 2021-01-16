@@ -6,7 +6,7 @@ const {verificaToken} = require('../middlewares/autenticacion')
 let Producto = require('../models/producto')
 
 app.get('/producto', verificaToken, (req, res) => {
-    Producto.find({}, 'nombre precioUni disponible categoria usuario')
+    Producto.find({}, 'nombre precioUni disponible categoria usuario img')
         .populate('categoria', 'descripcion')
         .populate('usuario', 'nombre email')
         .sort('categoria')
@@ -30,7 +30,7 @@ app.get('/producto', verificaToken, (req, res) => {
 app.get('/producto/:id', verificaToken, (req, res) => {
     let id = req.params.id
     
-    Producto.findById(id, 'nombre precioUni disponible categoria usuario')
+    Producto.findById(id, 'nombre precioUni disponible categoria usuario img')
         .populate('categoria', 'descripcion')
         .populate('usuario', 'nombre email')
         .exec((err, productoDB) => {
